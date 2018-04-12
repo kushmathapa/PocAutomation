@@ -1,0 +1,9 @@
+c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\obj\Debug\POC automation.csprojResolveAssemblyReference.cache
+c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\bin\Debug\POC automation.dll
+c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\bin\Debug\POC automation.pdb
+c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\bin\Debug\Ionic.Zip.dll
+c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\bin\Debug\Newtonsoft.Json.dll
+c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\bin\Debug\WebDriver.dll
+c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\bin\Debug\WebDriver.xml
+c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\obj\Debug\POC automation.dll
+c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\obj\Debug\POC automation.pdb

@@ -10,7 +10,6 @@ namespace Poc_Automation.UITests
     using OpenQA.Selenium.Firefox;
     using OpenQA.Selenium.IE;
     using OpenQA.Selenium.Remote;
-    using OpenQA.Selenium.PhantomJS;
     using NUnit.Framework;
 
     

@@ -1,56 +1,57 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 
-namespace Partsunlimited.UITests
+namespace Poc_Automation.UITests
 {
-    using Microsoft.VisualStudio.TestTools.UnitTesting;
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;
     using OpenQA.Selenium.Firefox;
     using OpenQA.Selenium.IE;
     using OpenQA.Selenium.Remote;
     using OpenQA.Selenium.PhantomJS;
-    using System;
+    using NUnit.Framework;
 
-    [TestClass]
-    public class ChucksClass1
+    
+    public class PocAutomation
     {
         private string baseURL = "https://wingskushma.github.io/pages/demoPage.html";
         private RemoteWebDriver driver;
-        private string browser;
-        public TestContext TestContext { get; set; }
+        private string browser = "chromes";
 
-        public string checkboxCssSelector =
+        public string CheckboxCssSelector =
             ".checkboxDiv:nth-of-type({0})>div.form-group:nth-of-type({1}) .checkbox:nth-of-type({2}) input";
 
-        [TestMethod]
-        [TestCategory("Selenium")]
-        [Priority(1)]
-        [Owner("Chrome")]
 
+        public static void Main()
+        {
+            
+        }
+        [Test, Category("Selenium")]
         public void PersonalityTest()
         {
             //driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(baseURL);
-            SetValueByCssSelector("input[type=\"text\"]","test value");
+            SetValueByCssSelector("input[type=\"text\"]", "test value"); 
             SetTextArea("textarea#introInput", 5001);
             SetTextArea("textarea#hobbiesInput", 5001);
             var checkBoxCount = FindCountOfElements(".checkboxDiv:nth-of-type(1)>div.form-group");
             for (int i = 1; i < checkBoxCount+1; i++)
             {
-                ClickOnElementByCssSelector(string.Format(checkboxCssSelector, 1, i, 1));
-                ClickOnElementByCssSelector(string.Format(checkboxCssSelector, 1, i, 2));
-                ClickOnElementByCssSelector(string.Format(checkboxCssSelector, 1, i, 3));
-                ClickOnElementByCssSelector(string.Format(checkboxCssSelector, 1, i, 4));
+                ClickOnElementByCssSelector(string.Format(CheckboxCssSelector, 1, i, 1));
+                ClickOnElementByCssSelector(string.Format(CheckboxCssSelector, 1, i, 2));
+                ClickOnElementByCssSelector(string.Format(CheckboxCssSelector, 1, i, 3));
+                ClickOnElementByCssSelector(string.Format(CheckboxCssSelector, 1, i, 4));
             }
             checkBoxCount = FindCountOfElements(".checkboxDiv:nth-of-type(2)>div.form-group");
             for (int i = 1; i < checkBoxCount+1; i++)
             {
-                ClickOnElementByCssSelector(string.Format(checkboxCssSelector, 2, i, 1));
-                ClickOnElementByCssSelector(string.Format(checkboxCssSelector, 2, i, 2));
-                ClickOnElementByCssSelector(string.Format(checkboxCssSelector, 2, i, 3));
-                ClickOnElementByCssSelector(string.Format(checkboxCssSelector, 2, i, 4));
+                ClickOnElementByCssSelector(string.Format(CheckboxCssSelector, 2, i, 1));
+                ClickOnElementByCssSelector(string.Format(CheckboxCssSelector, 2, i, 2));
+                ClickOnElementByCssSelector(string.Format(CheckboxCssSelector, 2, i, 3));
+                ClickOnElementByCssSelector(string.Format(CheckboxCssSelector, 2, i, 4));
             }
             ClickOnElementByCssSelector(".submitButton");
         }
@@ -60,16 +61,15 @@ namespace Partsunlimited.UITests
         /// <summary>
         /// Use TestCleanup to run code after each test has run
         /// </summary>
-        [TestCleanup()]
-        public void MyTestCleanup()
+        [TearDown()]
+        public void TestCleanup()
         {
             driver.Quit();
         }
 
-        [TestInitialize()]
-        public void MyTestInitialize()
+        [SetUp]
+        public void TestInitialize()
         {   //Set the browswer from a build
-            browser = TestContext.Properties["browser"] != null ? TestContext.Properties["browser"].ToString() : "chrome";
             switch (browser)
             {
                 case "firefox":
@@ -78,19 +78,21 @@ namespace Partsunlimited.UITests
                 case "ie":
                     driver = new InternetExplorerDriver();
                     break;
-                case "PhantomJS":
-                    driver = new PhantomJSDriver();
-                    break;
+                
                 default:
                     driver = new ChromeDriver();
                     break;
             }
-            if (TestContext.Properties["Url"] != null) //Set URL from a build
-            {
-                baseURL = TestContext.Properties["Url"].ToString();
-            }
+          
            
         }
+
+        [TestFixtureSetUp]
+        protected virtual void ClassInit()
+        {
+            Console.WriteLine("Class initialized");
+        }
+
 
         private void SetTextArea(string cssSelector, int length)
         {

@@ -7,3 +7,4 @@ c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automat
 c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\bin\Debug\WebDriver.xml
 c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\obj\Debug\POC automation.dll
 c:\users\i82330\documents\visual studio 2013\Projects\POC automation\POC automation\obj\Debug\POC automation.pdb
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\nunit.framework.dll

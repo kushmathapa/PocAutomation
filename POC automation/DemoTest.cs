@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
 
-namespace Poc_Automation.UITests
+namespace Poc.Automation
 {
     using OpenQA.Selenium;
     using OpenQA.Selenium.Chrome;

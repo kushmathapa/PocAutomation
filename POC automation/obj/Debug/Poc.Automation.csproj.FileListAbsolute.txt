@@ -1,0 +1,9 @@
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\Poc.Automation.dll
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\Poc.Automation.pdb
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\Ionic.Zip.dll
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\Newtonsoft.Json.dll
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\nunit.framework.dll
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\WebDriver.dll
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\WebDriver.xml
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\obj\Debug\Poc.Automation.dll
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\obj\Debug\Poc.Automation.pdb

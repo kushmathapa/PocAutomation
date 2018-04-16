@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 2013
 VisualStudioVersion = 12.0.40629.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "POC automation", "POC automation\POC automation.csproj", "{003238F1-F27B-4361-99F1-EFC64CEE9D7E}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Poc.Automation", "POC automation\Poc.Automation.csproj", "{003238F1-F27B-4361-99F1-EFC64CEE9D7E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

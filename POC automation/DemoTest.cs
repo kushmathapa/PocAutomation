@@ -13,7 +13,7 @@ namespace Poc.Automation
     using NUnit.Framework;
 
     
-    public class PocAutomation
+    public class DemoTest
     {
         private string baseURL = "https://wingskushma.github.io/pages/demoPage.html";
         private RemoteWebDriver driver;

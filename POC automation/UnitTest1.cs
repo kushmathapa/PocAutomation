@@ -23,10 +23,6 @@ namespace Poc_Automation.UITests
             ".checkboxDiv:nth-of-type({0})>div.form-group:nth-of-type({1}) .checkbox:nth-of-type({2}) input";
 
 
-        public static void Main()
-        {
-            
-        }
         [Test, Category("Selenium")]
         public void PersonalityTest()
         {

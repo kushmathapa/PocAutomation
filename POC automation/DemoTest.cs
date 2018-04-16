@@ -29,6 +29,7 @@ namespace Poc.Automation
             //driver = new ChromeDriver();
             driver.Manage().Window.Maximize();
             driver.Navigate().GoToUrl(baseURL);
+            Console.WriteLine("Navigate to " + baseURL);
             SetValueByCssSelector("input[type=\"text\"]", "test value"); 
             SetTextArea("textarea#introInput", 5001);
             SetTextArea("textarea#hobbiesInput", 5001);
@@ -96,6 +97,7 @@ namespace Poc.Automation
                 .Clear();
             driver.FindElementByCssSelector(cssSelector)
                 .SendKeys(longtext);
+            Console.WriteLine("Set text Area with characters of length: "+ length);
         }
 
         private void SetValueByCssSelector(string cssSelector, string value)
@@ -104,6 +106,7 @@ namespace Poc.Automation
                 .Clear();
             driver.FindElementByCssSelector(cssSelector)
                 .SendKeys(value);
+            Console.WriteLine("Set element value as "+ value);
         }
 
         private int FindCountOfElements(string cssLocator)

@@ -17,7 +17,7 @@ namespace Poc.Automation
     {
         private string baseURL = "https://wingskushma.github.io/pages/demoPage.html";
         private RemoteWebDriver driver;
-        private string browser = "chromes";
+        private string browser = "chrome";
 
         public string CheckboxCssSelector =
             ".checkboxDiv:nth-of-type({0})>div.form-group:nth-of-type({1}) .checkbox:nth-of-type({2}) input";
@@ -66,6 +66,9 @@ namespace Poc.Automation
         [SetUp]
         public void TestInitialize()
         {   //Set the browswer from a build
+            
+          DesiredCapabilities capability =  new DesiredCapabilities();
+          capability.SetCapability("browserName", browser);
             switch (browser)
             {
                 case "firefox":
@@ -76,7 +79,8 @@ namespace Poc.Automation
                     break;
                 
                 default:
-                    driver = new ChromeDriver();
+                    driver = new RemoteWebDriver(new Uri("http://192.168.73.67:4445/wd/hub"), capability);
+                    //driver = new ChromeDriver();
                     break;
             }
           
@@ -120,7 +124,7 @@ namespace Poc.Automation
            // if (!driver.FindElementByCssSelector(cssSelector).Selected)
             driver.FindElementByCssSelector(cssSelector)
                 .Click();
-            
+            Console.WriteLine("Clicked on element" );
         }
     }
 }

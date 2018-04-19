@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
+using System.Text;
 
 namespace Poc.Automation
 {
@@ -11,13 +13,19 @@ namespace Poc.Automation
     using OpenQA.Selenium.IE;
     using OpenQA.Selenium.Remote;
     using NUnit.Framework;
+    using System.Configuration;
 
     
     public class DemoTest
     {
         private string baseURL = "https://wingskushma.github.io/pages/demoPage.html";
-        private RemoteWebDriver driver;
-        private string browser = "chrome";
+        private RemoteWebDriver _driver;
+        private string _browserOptions;
+        private Uri _remoteAddress;
+        private DesiredCapabilities _capabilities;
+        private DriverService _driverService;
+        private const string PATH = "Executables";
+
 
         public string CheckboxCssSelector =
             ".checkboxDiv:nth-of-type({0})>div.form-group:nth-of-type({1}) .checkbox:nth-of-type({2}) input";
@@ -27,8 +35,8 @@ namespace Poc.Automation
         public void PersonalityTest()
         {
             //driver = new ChromeDriver();
-            driver.Manage().Window.Maximize();
-            driver.Navigate().GoToUrl(baseURL);
+            _driver.Manage().Window.Maximize();
+            _driver.Navigate().GoToUrl(baseURL);
             Console.WriteLine("Navigate to " + baseURL);
             SetValueByCssSelector("input[type=\"text\"]", "test value"); 
             SetTextArea("textarea#introInput", 5001);
@@ -60,31 +68,21 @@ namespace Poc.Automation
         [TearDown()]
         public void TestCleanup()
         {
-            driver.Quit();
+            _driver.Quit();
         }
 
         [SetUp]
         public void TestInitialize()
         {   //Set the browswer from a build
-            
-          DesiredCapabilities capability =  new DesiredCapabilities();
-          capability.SetCapability("browserName", browser);
-            switch (browser)
-            {
-                case "firefox":
-                    driver = new FirefoxDriver();
-                    break;
-                case "ie":
-                    driver = new InternetExplorerDriver();
-                    break;
-                
-                default:
-                    driver = new RemoteWebDriver(new Uri("http://192.168.73.67:4445/wd/hub"), capability);
-                    //driver = new ChromeDriver();
-                    break;
-            }
-          
-           
+            LaunchDriver();
+            // DesiredCapabilities capability = new DesiredCapabilities();
+            //capability.SetCapability("browserName", "chrome");
+            //_driver = new RemoteWebDriver(new Uri("http://192.168.73.67:4445/wd/hub"), capability);
+            //_driver = new RemoteWebDriver(new Uri("http://192.168.74.166:4445/wd/hub"), capability);
+            //driver = new ChromeDriver();
+
+
+
         }
 
         [TestFixtureSetUp]
@@ -97,34 +95,104 @@ namespace Poc.Automation
         private void SetTextArea(string cssSelector, int length)
         {
             var longtext = new string('a', length);
-            driver.FindElementByCssSelector(cssSelector)
+            _driver.FindElementByCssSelector(cssSelector)
                 .Clear();
-            driver.FindElementByCssSelector(cssSelector)
+            _driver.FindElementByCssSelector(cssSelector)
                 .SendKeys(longtext);
             Console.WriteLine("Set text Area with characters of length: "+ length);
         }
 
         private void SetValueByCssSelector(string cssSelector, string value)
         {
-            driver.FindElementByCssSelector(cssSelector)
+            _driver.FindElementByCssSelector(cssSelector)
                 .Clear();
-            driver.FindElementByCssSelector(cssSelector)
+            _driver.FindElementByCssSelector(cssSelector)
                 .SendKeys(value);
             Console.WriteLine("Set element value as "+ value);
         }
 
         private int FindCountOfElements(string cssLocator)
         {
-            return driver.FindElements(By.CssSelector(cssLocator)).Count;
+            return _driver.FindElements(By.CssSelector(cssLocator)).Count;
             
         }
 
         private void ClickOnElementByCssSelector(string cssSelector)
         {
            // if (!driver.FindElementByCssSelector(cssSelector).Selected)
-            driver.FindElementByCssSelector(cssSelector)
+            _driver.FindElementByCssSelector(cssSelector)
                 .Click();
             Console.WriteLine("Clicked on element" );
         }
+
+        /// <summary>
+        /// Instantiates a <see cref="ScreenshotRemoteWebDriver"/>.
+        /// </summary>
+        /// <returns>A <see cref="IWebDriver"/></returns>
+        private RemoteWebDriver LaunchDriver()
+        {
+            string testServer = ConfigurationManager.AppSettings["TestServer"];
+            string testPort = ConfigurationManager.AppSettings["TestPort"];
+            _browserOptions = ConfigurationManager.AppSettings["TestBrowser"];
+            var strBuilder = new StringBuilder();
+            string requestUri = !string.IsNullOrEmpty(testServer) && !string.IsNullOrEmpty(testPort)
+                                    ? strBuilder.Append("http://")
+                                          .Append(testServer)
+                                          .Append(":")
+                                          .Append(testPort)
+                                          .Append("/").ToString()
+                                    : string.Empty;
+
+            _remoteAddress = !string.IsNullOrEmpty(requestUri) ? new Uri(strBuilder
+            .Append("wd")
+            .Append("/")
+            .Append("hub").ToString()) : null;
+            switch (_browserOptions)
+            {
+                case "firefox":
+                    _driver = new FirefoxDriver();
+                    break;
+                case "ie":
+                    _driver = new InternetExplorerDriver();
+                    break;
+                case "chrome":
+                    _driver = LaunchChrome();
+                    break;
+                default:
+                    throw new NotSupportedException(String.Format("Browser {0} is not supported.", _browserOptions));
+            }
+
+
+            return _driver;
+        }
+
+
+        /// <summary>
+        /// Instantiates a <see cref="ChromeDriver"/>.
+        /// </summary>
+        /// <returns>A <see cref="IWebDriver"/></returns>
+        private RemoteWebDriver LaunchChrome(string incognito = "0")
+        {
+            var switches = new[] { "--start-maximized", "--disable-popup-blocking", "--ignore-certificate-errors", "--multi-profiles", "--profiling-flush", "--disable-extensions" };
+            if (incognito == "1") switches[switches.Length - 1] = "--incognito";
+            var options = new ChromeOptions();
+            options.AddUserProfilePreference("credentials_enable_service", false);
+            options.AddUserProfilePreference("profile.password_manager_enabled", false);
+             options.AddArguments(switches);
+             _capabilities = options.ToCapabilities() as DesiredCapabilities;
+            if (null == _remoteAddress)
+            {
+                //_driverService = ChromeDriverService.CreateDefaultService(Path.GetFullPath(PATH));
+                //_driverService.Start();
+                //_remoteAddress = _driverService.ServiceUrl;
+                _driver = new ChromeDriver();
+
+            }
+            if (_remoteAddress != null)
+                _driver = new RemoteWebDriver(_remoteAddress, _capabilities);
+            return _driver;
+        }
+
+
     }
 }

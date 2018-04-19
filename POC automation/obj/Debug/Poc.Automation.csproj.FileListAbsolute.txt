@@ -7,3 +7,5 @@ C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automat
 C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\WebDriver.xml
 C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\obj\Debug\Poc.Automation.dll
 C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\obj\Debug\Poc.Automation.pdb
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\bin\Debug\Poc.Automation.dll.config
+C:\Users\i82330\Documents\Visual Studio 2013\Projects\POC automation\POC automation\obj\Debug\Poc.Automation.csprojResolveAssemblyReference.cache

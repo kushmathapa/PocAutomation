@@ -39,8 +39,8 @@ namespace Poc.Automation
             _driver.Navigate().GoToUrl(baseURL);
             Console.WriteLine("Navigate to " + baseURL);
             SetValueByCssSelector("input[type=\"text\"]", "test value"); 
-            SetTextArea("textarea#introInput", 5001);
-            SetTextArea("textarea#hobbiesInput", 5001);
+            SetTextArea("textarea#introInput", 1000);
+            SetTextArea("textarea#hobbiesInput", 1000);
             var checkBoxCount = FindCountOfElements(".checkboxDiv:nth-of-type(1)>div.form-group");
             for (int i = 1; i < checkBoxCount+1; i++)
             {

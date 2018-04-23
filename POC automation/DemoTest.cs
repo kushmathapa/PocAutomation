@@ -180,7 +180,7 @@ namespace Poc.Automation
             options.AddUserProfilePreference("profile.password_manager_enabled", false);
              options.AddArguments(switches);
              _capabilities = options.ToCapabilities() as DesiredCapabilities;
-            if (null == _remoteAddress)
+            if (_remoteAddress == null)
             {
                 //_driverService = ChromeDriverService.CreateDefaultService(Path.GetFullPath(PATH));
                 //_driverService.Start();
@@ -188,7 +188,7 @@ namespace Poc.Automation
                 _driver = new ChromeDriver();
 
             }
-            if (_remoteAddress != null)
+            else
                 _driver = new RemoteWebDriver(_remoteAddress, _capabilities);
             return _driver;
         }

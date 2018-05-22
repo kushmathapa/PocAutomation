@@ -30,6 +30,32 @@ namespace Poc.Automation
             SiteDriver.MaximizeWindow();
             SiteDriver.Open(baseURL);
             Console.WriteLine("Navigate to " + baseURL);
+            FillFormFields();
+            FillFormFields();
+            FillFormFields();
+            FillFormFields();
+            FillFormFields();
+            FillFormFields();
+            //var checkBoxCount = _demo.FindCountOfElements(".checkboxDiv:nth-of-type(1)>div.form-group");
+            //for (int i = 1; i < checkBoxCount+1; i++)
+            //{
+            //    _demo.ClickOnFavItem( 1, i, 1);
+            //    _demo.ClickOnFavItem( 1, i, 2);
+            //    _demo.ClickOnFavItem( 1, i, 3);
+            //    _demo.ClickOnFavItem( 1, i, 4);
+            //}
+            //checkBoxCount = _demo.FindCountOfElements(".checkboxDiv:nth-of-type(2)>div.form-group");
+            //for (int i = 1; i < checkBoxCount+1; i++)
+            //{
+            //    _demo.ClickOnFavItem( 2, i, 1);
+            //    _demo.ClickOnFavItem( 2, i, 2);
+            //    _demo.ClickOnFavItem( 2, i, 3);
+            //    _demo.ClickOnFavItem( 2, i, 4);
+            //}
+        }
+
+        private void FillFormFields()
+        {
             _demo.SetValueByCssSelector("input[type=\"text\"]", "test value");
             _demo.SetTextArea("textarea#introInput", 1500);
             _demo.SetTextArea("textarea#hobbiesInput", 1500);
@@ -47,26 +73,9 @@ namespace Poc.Automation
             _demo.SelectSkills("Coding");
             _demo.SelectCountry("Nepal");
             _demo.SelectFavItem();
-            //var checkBoxCount = _demo.FindCountOfElements(".checkboxDiv:nth-of-type(1)>div.form-group");
-            //for (int i = 1; i < checkBoxCount+1; i++)
-            //{
-            //    _demo.ClickOnFavItem( 1, i, 1);
-            //    _demo.ClickOnFavItem( 1, i, 2);
-            //    _demo.ClickOnFavItem( 1, i, 3);
-            //    _demo.ClickOnFavItem( 1, i, 4);
-            //}
-            //checkBoxCount = _demo.FindCountOfElements(".checkboxDiv:nth-of-type(2)>div.form-group");
-            //for (int i = 1; i < checkBoxCount+1; i++)
-            //{
-            //    _demo.ClickOnFavItem( 2, i, 1);
-            //    _demo.ClickOnFavItem( 2, i, 2);
-            //    _demo.ClickOnFavItem( 2, i, 3);
-            //    _demo.ClickOnFavItem( 2, i, 4);
-            //}
             _demo.ClickOnElementByCssSelector(".submitButton");
         }
 
-      
 
         /// <summary>
         /// Use TestCleanup to run code after each test has run

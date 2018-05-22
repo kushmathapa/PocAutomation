@@ -36,6 +36,7 @@ namespace Poc.Automation
             FillFormFields();
             FillFormFields();
             FillFormFields();
+            _demo.ClickOnElementByCssSelector(".submitButton");
             //var checkBoxCount = _demo.FindCountOfElements(".checkboxDiv:nth-of-type(1)>div.form-group");
             //for (int i = 1; i < checkBoxCount+1; i++)
             //{
@@ -73,7 +74,6 @@ namespace Poc.Automation
             _demo.SelectSkills("Coding");
             _demo.SelectCountry("Nepal");
             _demo.SelectFavItem();
-            _demo.ClickOnElementByCssSelector(".submitButton");
         }
 
 

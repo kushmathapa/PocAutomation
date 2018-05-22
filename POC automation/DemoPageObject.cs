@@ -33,7 +33,7 @@ namespace Poc.Automation
 
         public string contactNo = "label.contactLabel + input";
 
-        public string introdution = "label.introLabel + textarea";
+        public string introduction = "label.introLabel + textarea";
 
         public string hobbies = "label.hobbiesLabel + textarea";
 

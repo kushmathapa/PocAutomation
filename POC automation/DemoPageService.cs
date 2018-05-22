@@ -64,6 +64,8 @@ namespace Poc.Automation
 
         public void SetFullName(string strFullName)
         {
+            SiteDriver.FindElement(_demoPage.fullName, How.CssSelector)
+                .Clear();
             SiteDriver.SendKeys(_demoPage.fullName, How.CssSelector, strFullName);
         }
 
@@ -93,37 +95,68 @@ namespace Poc.Automation
         }
         public void SetEmail(string strEmail)
         {
+            SiteDriver.FindElement(_demoPage.email, How.CssSelector)
+                .Clear();
             SiteDriver.SendKeys(_demoPage.email, How.CssSelector, strEmail);
         }
 
         public void SetUserName(string strUName)
         {
+            SiteDriver.FindElement(_demoPage.username, How.CssSelector)
+                .Clear();
             SiteDriver.SendKeys(_demoPage.username, How.CssSelector, strUName);
         }
 
         public void SetPassword(string strPassword)
-        { SiteDriver.SendKeys(_demoPage.password, How.CssSelector, strPassword); }
+        {
+            SiteDriver.FindElement(_demoPage.password, How.CssSelector)
+                .Clear(); 
+            SiteDriver.SendKeys(_demoPage.password, How.CssSelector, strPassword);
+        }
 
         public void SetCity(string strCity)
-        { SiteDriver.SendKeys(_demoPage.city, How.CssSelector, strCity); }
+        {
+            SiteDriver.FindElement(_demoPage.city, How.CssSelector)
+                .Clear(); 
+            SiteDriver.SendKeys(_demoPage.city, How.CssSelector, strCity);
+        }
 
         public void SetState(string strState)
-        { SiteDriver.SendKeys(_demoPage.state, How.CssSelector, strState); }
+        {
+            SiteDriver.FindElement(_demoPage.state, How.CssSelector)
+                .Clear(); 
+            SiteDriver.SendKeys(_demoPage.state, How.CssSelector, strState);
+        }
 
         public void SetZipCode(string strZipCode)
-        { SiteDriver.SendKeys(_demoPage.zipCode, How.CssSelector, strZipCode); }
+        {
+            SiteDriver.FindElement(_demoPage.zipCode, How.CssSelector)
+                .Clear(); 
+            SiteDriver.SendKeys(_demoPage.zipCode, How.CssSelector, strZipCode);
+        }
 
         public void SetContactNo(string strContactNo)
-        { SiteDriver.SendKeys(_demoPage.contactNo, How.CssSelector, strContactNo); }
+        {
+            SiteDriver.FindElement(_demoPage.contactNo, How.CssSelector)
+                .Clear(); 
+            SiteDriver.SendKeys(_demoPage.contactNo, How.CssSelector, strContactNo);
+        }
 
         public void SetIntroduction(string strIntro)
         {
-            SiteDriver.SendKeys(_demoPage.introdution, How.CssSelector, strIntro);
+
+            SiteDriver.FindElement(_demoPage.introduction, How.CssSelector)
+                .Clear(); 
+            SiteDriver.SendKeys(_demoPage.introduction, How.CssSelector, strIntro);
 
         }
 
         public void SetHobbies(string strHobbies)
-        { SiteDriver.SendKeys(_demoPage.hobbies, How.CssSelector, strHobbies); }
+        {
+            SiteDriver.FindElement(_demoPage.hobbies, How.CssSelector)
+                .Clear();
+            SiteDriver.SendKeys(_demoPage.hobbies, How.CssSelector, strHobbies);
+        }
 
         public void ClickFavFood()
         {

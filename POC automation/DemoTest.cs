@@ -35,7 +35,6 @@ namespace Poc.Automation
             FillFormFields();
             FillFormFields();
             FillFormFields();
-            FillFormFields();
             _demo.ClickOnElementByCssSelector(".submitButton");
             //var checkBoxCount = _demo.FindCountOfElements(".checkboxDiv:nth-of-type(1)>div.form-group");
             //for (int i = 1; i < checkBoxCount+1; i++)
